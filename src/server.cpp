@@ -95,7 +95,7 @@ void Server::start() {
             continue;
         }
 
-        // fork to handle concurrent connections. inspired by https://ruslanspivak.com/lsbaws-part3/
+        // fork to handle concurrent connections. idea inspired by https://ruslanspivak.com/lsbaws-part3/
         pid_t pid = fork();
 
         if (pid < 0) {
