@@ -81,6 +81,7 @@ Then run the output binary:
 Currently this only supports static file serving and returning data via JSON (which makes it somewhat usable for making very basic APIs). It also supports serving html pages with contextual data with [inja](https://github.com/pantor/inja). 
 
 # TODO
+- Add redirect functionality
 - Add support for file upload
 - Add support for authentication methods (currently the authentication middleware doesn't work as expected)
 - Choose a nice name for the repo
