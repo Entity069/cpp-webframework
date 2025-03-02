@@ -26,6 +26,15 @@ void Response::addCookie(const std::string& key, const std::string& value) {
     cookies[key] = value;
 }
 
+void Response::redirect(const std::string& location, int status_code) {
+    if (status_code == HTTP_FOUND || status_code == HTTP_MOVED_PERMANENTLY) {
+        status_code = HTTP_FOUND;
+    }
+    setStatus(status_code);
+    addHeader("Location", location);
+    text("Moved permanently. Redirecting to " + location);
+}
+
 void Response::json(const nlohmann::json& data) {
     setContentType(MIME_JSON);
     body = data.dump();
@@ -44,12 +53,14 @@ void Response::text(const std::string& text_content) {
 std::string Response::serialize() const {
     std::ostringstream response_stream;
 
-    response_stream << "HTTP/1.1 " << status_code << " ";
+    response_stream << "HTTP/2 " << status_code << " ";
     switch (status_code) {
-        case 200: response_stream << "OK"; break;
-        case 400: response_stream << "Bad Request"; break;
-        case 404: response_stream << "Not Found"; break;
-        case 500: response_stream << "Internal Server Error"; break;
+        case HTTP_OK: response_stream << "OK"; break;
+        case HTTP_MOVED_PERMANENTLY: response_stream << "Moved Permanently"; break;
+        case HTTP_FOUND: response_stream << "Found"; break;
+        case HTTP_BAD_REQUEST: response_stream << "Bad Request"; break;
+        case HTTP_NOT_FOUND: response_stream << "Not Found"; break;
+        case HTTP_INTERNAL_SERVER_ERROR: response_stream << "Internal Server Error"; break;
         default: response_stream << "Unknown Status"; break;
     }
     response_stream << "\r\n";

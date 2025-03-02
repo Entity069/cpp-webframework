@@ -12,6 +12,8 @@ namespace MicroWeb {
     constexpr const char* SERVER_NAME = "heyserver/1.0";
 
     constexpr int HTTP_OK = 200;
+    constexpr int HTTP_MOVED_PERMANENTLY = 301;
+    constexpr int HTTP_FOUND = 302;
     constexpr int HTTP_BAD_REQUEST = 400;
     constexpr int HTTP_NOT_FOUND = 404;
     constexpr int HTTP_METHOD_NOT_ALLOWED = 405;

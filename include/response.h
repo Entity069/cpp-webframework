@@ -23,6 +23,7 @@ public:
     void setContentType(const std::string& type);
     void addHeader(const std::string& key, const std::string& value);
     void addCookie(const std::string& key, const std::string& value);
+    void redirect(const std::string& location, int status_code = HTTP_MOVED_PERMANENTLY);
 
     void json(const nlohmann::json& data);
     void html(const std::string& html_content);

@@ -19,6 +19,10 @@ int main() {
         res.json(response);
     });
 
+    server.route("GET", "/", [](Request& req, Response& res) {
+        res.redirect("/hello");
+    });
+
     server.route("POST", "/login", [](Request& req, Response& res) {
         json body = req.getJsonBody();
         // std::cout << "Body from main.cpp " << body << std::endl;
